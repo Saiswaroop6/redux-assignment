@@ -6,23 +6,22 @@ import "./RenderAPIData.css";
 
 export default function RenderAPIData() {
   const data = useSelector((state) => state.allData.data);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getData());
     
   }, [dispatch]);
-  
 
   return (
     <div>
-      {data.length&&<button className="header" onClick={() => dispatch( deletePhoto())}>Remove 1 photo</button>}
-      {data.length===0&&<p className="error">No photos to delete</p>}
+      {data?.length>0&&<button className="header" onClick={() => dispatch( deletePhoto())}>Remove 1 photo</button>}
+      {data?.length===0&&<p className="error">No photos to delete</p>}
       <div>
         {data?.map(each=>{
           return(
-            <img src={each.thumbnailUrl} alt='img' className="img-style"/>
+            <img src={each?.thumbnailUrl} alt='img' className="img-style"/>
           )
         })}
         </div>

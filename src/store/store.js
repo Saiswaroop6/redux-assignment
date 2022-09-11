@@ -1,8 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import getData from "./RenderData";
+import { configureStore,applyMiddleware } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
+import rootReducers from ".";
 
-export default configureStore({
-  reducer: {
-    allData: getData,
-  },
-});
+export default configureStore(
+ {reducer:rootReducers},applyMiddleware(thunk)
+);
